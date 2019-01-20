@@ -55,8 +55,8 @@ const configureJavaScriptOptimisation = () => {
 const configureHtmlWebpack = () => {
 	return {
 		templateContent: '',
-        filename: 'webapp.html',
-        inject: false,
+		filename: 'webapp.html',
+		inject: false,
 	}
 };
 
@@ -108,41 +108,41 @@ const configureBabel = (browserList) => {
  * @type {Object}
  */
 module.exports = {
-    devtool: 'source-map',
+	devtool: 'source-map',
 	entry: { 'site': './src/index.js' },
-    mode: 'production',
+	mode: 'production',
 	optimization: {
 		minimizer: [
 			new OptimizeCSSAssetsPlugin(configureCssOptimisation()),
 			new TerserPlugin(configureJavaScriptOptimisation()),
 		]
 	},
-    module: {
-        rules: [{
+	module: {
+		rules: [{
 			exclude: /node_modules/,
-            test: /\.js$/,
-            use: [ configureBabel(pkg.browserList) ],
-        }, {
-            test: /\.s[c|a]ss$/,
-            use: [
+			test: /\.js$/,
+			use: [ configureBabel(pkg.browserList) ],
+		}, {
+			test: /\.s[c|a]ss$/,
+			use: [
 				{ loader: MiniCssExtractPlugin.loader },
 				'css-loader',
 				{ loader: 'postcss-loader' },
 				'sass-loader'
 			]
-        }, {
-            test: /\.svg$/,
-            use: {
-                loader: 'file-loader',
-                options: { name: 'svg/[name].[hash:5].svg' },
-            }
-        }]
-    },
-    output: {
-        filename: 'js/[name].[hash:5].js',
-        path: path.join(__dirname, '/dist'),
+		}, {
+			test: /\.svg$/,
+			use: {
+				loader: 'file-loader',
+				options: { name: 'svg/[name].[hash:5].svg' },
+			}
+		}]
+	},
+	output: {
+		filename: 'js/[name].[hash:5].js',
+		path: path.join(__dirname, '/dist'),
 		publicPath: process.env.PUBLIC_PATH,
-    },
+	},
 	plugins: [
 		new CleanWebpackPlugin([ 'dist' ], { exclude: [ '.gitkeep' ] }),
 		new HtmlWebpackPlugin(configureHtmlWebpack()),

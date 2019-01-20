@@ -24,7 +24,7 @@ add_action( 'after_setup_theme', 'feeds' );
 add_filter( 'post_comments_feed_link', 'remove_comments_rss' );
 
 function feeds() {
-    add_theme_support( 'automatic-feed-links' );
+	add_theme_support( 'automatic-feed-links' );
 }
 
 function remove_comments_rss() {

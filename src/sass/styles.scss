@@ -9,28 +9,28 @@
  * change.
  */
 html {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 *, *:before, *:after {
-    box-sizing: inherit;
+	box-sizing: inherit;
 }
 
 // General element styling.
 html,
 body {
-    width: 100%;
-    overflow-x: hidden;
+	width: 100%;
+	overflow-x: hidden;
 }
 
 html {
-    font-size: 62.5%; // 10px
+	font-size: 62.5%; // 10px
 }
 
 body {
-    line-height: 2em;
-    font-size: 1.4em;
-    color: $secondary;
+	line-height: 2em;
+	font-size: 1.4em;
+	color: $secondary;
 }
 
 // Now import components.
