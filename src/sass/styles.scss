@@ -1,0 +1,37 @@
+// Normalise browser styling
+@import "~normalize.css/normalize";
+
+// Import variables
+@import "variables";
+
+/**
+ * Apply a natural box layout model to all elements, but allowing components to
+ * change.
+ */
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+// General element styling.
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+html {
+    font-size: 62.5%; // 10px
+}
+
+body {
+    line-height: 2em;
+    font-size: 1.4em;
+    color: $secondary;
+}
+
+// Now import components.
+@import "components";
