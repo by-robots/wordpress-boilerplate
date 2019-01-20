@@ -2,4 +2,4 @@
 
 // TODO: Front page mark-up.
 
-get_footer(); ?>
+get_footer();
