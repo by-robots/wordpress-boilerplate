@@ -15,11 +15,12 @@ module.exports = {
 		port: 8080,
 	},
 	devtool: 'source-map',
+	entry: [ './src/js/index.js' ],
 	mode: 'development',
 	module: {
 		rules: [{
 			test: /\.s[c|a]ss$/,
-			use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+			use: [ 'style-loader', 'css-loader', 'sass-loader' ],
 		}, {
 			test: /\.svg$/,
 			use: {
@@ -29,7 +30,7 @@ module.exports = {
 					outputPath: path.join(__dirname, '/dist'),
 					publicPath: 'http://localhost:8080/',
 				},
-			}
+			},
 		}]
 	},
 	output: {
@@ -37,5 +38,5 @@ module.exports = {
 		path: path.join(__dirname, '/dist'),
 		publicPath: 'http://localhost:8080/',
 	},
-	plugins: [ new webpack.HotModuleReplacementPlugin() ]
+	plugins: [ new webpack.HotModuleReplacementPlugin() ],
 };

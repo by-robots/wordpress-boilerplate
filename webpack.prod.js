@@ -31,7 +31,7 @@ const configureCssOptimisation = () => {
 			},
 			safe: true,
 		},
-	}
+	};
 };
 
 /**
@@ -43,7 +43,7 @@ const configureJavaScriptOptimisation = () => {
 	return {
 		cache: true,
 		parallel: true,
-		sourceMap: true
+		sourceMap: true,
 	};
 };
 
@@ -57,7 +57,7 @@ const configureHtmlWebpack = () => {
 		templateContent: '',
 		filename: 'webapp.html',
 		inject: false,
-	}
+	};
 };
 
 /**
@@ -88,16 +88,44 @@ const configureBabel = (browserList) => {
 	return {
 		loader: 'babel-loader',
 		options: {
-			presets: [ [
+			presets: [[
 				'@babel/preset-env', {
 					modules: false,
 					useBuiltIns: 'entry',
 					targets: { browsers: browserList },
-				}
-			] ],
-			plugins: [ [
-				"@babel/plugin-transform-runtime", { "regenerator": true }
-			] ],
+				},
+			]],
+			plugins: [[
+				"@babel/plugin-transform-runtime", { "regenerator": true },
+			]],
+		},
+	};
+};
+
+/**
+ * Configure Webpack Manifest.
+ *
+ * @return {Object}
+ */
+const configureManifest = () => {
+	return {
+		map: (file) => {
+			// If the name has the path in already, or it's the webapp.html
+			// file, which doesn't need it, we can just return and crack on.
+			if (file.name.includes('/') || file.name == 'webapp.html') {
+				return file;
+			}
+
+			// However, if the file name doesn't match those rules we need to
+			// add it in to keep things nice and tidy. Note the special case -
+			// if the extension is .map it's the js map file so correct that.
+			let extension = file.name.split('.').pop();
+			if ('map' === extension) {
+				extension = 'js';
+			}
+
+			file.name = `${extension}/${file.name}`;
+			return file;
 		},
 	};
 };
@@ -109,13 +137,13 @@ const configureBabel = (browserList) => {
  */
 module.exports = {
 	devtool: 'source-map',
-	entry: { 'site': './src/index.js' },
+	entry: { 'site': './src/js/index.js' },
 	mode: 'production',
 	optimization: {
 		minimizer: [
 			new OptimizeCSSAssetsPlugin(configureCssOptimisation()),
 			new TerserPlugin(configureJavaScriptOptimisation()),
-		]
+		],
 	},
 	module: {
 		rules: [{
@@ -128,14 +156,14 @@ module.exports = {
 				{ loader: MiniCssExtractPlugin.loader },
 				'css-loader',
 				{ loader: 'postcss-loader' },
-				'sass-loader'
-			]
+				'sass-loader',
+			],
 		}, {
 			test: /\.svg$/,
 			use: {
 				loader: 'file-loader',
 				options: { name: 'svg/[name].[hash:5].svg' },
-			}
+			},
 		}]
 	},
 	output: {
@@ -146,8 +174,8 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin([ 'dist' ], { exclude: [ '.gitkeep' ] }),
 		new HtmlWebpackPlugin(configureHtmlWebpack()),
-		new ManifestPlugin(),
+		new ManifestPlugin(configureManifest()),
 		new MiniCssExtractPlugin({ filename: 'css/[name].[hash:5].css' }),
 		new WebappWebpackPlugin(configureWebApp()),
-	]
+	],
 };

@@ -11,7 +11,7 @@ function enqueue_js() {
 
 	// Include files only when in live mode.
 	if ( ! WP_DEBUG ) {
-		wp_enqueue_script( 'site', get_manifest_file( 'site.js' ), [], '1.0.0', true );
+		wp_enqueue_script( 'site', get_manifest_file( 'js/site.js' ), [], '1.0.0', true );
 	}
 
 	// Always include these files.
@@ -30,7 +30,7 @@ function enqueue_css() {
 
 	// Include files only when in live mode.
 	if ( ! WP_DEBUG ) {
-		wp_enqueue_style( 'styles', get_manifest_file( 'styles.css' ), [], '1.0.0' );
+		wp_enqueue_style( 'styles', get_manifest_file( 'css/styles.css' ), [], '1.0.0' );
 	}
 
 	// Always include these files.
