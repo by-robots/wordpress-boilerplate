@@ -14,8 +14,6 @@ const path = require('path');
 const configureDevServer = () => {
 	return {
 		contentBase: path.join(__dirname, 'dist'),
-		disableHostCheck: true,
-		headers: { 'Access-Control-Allow-Origin': '*' },
 		host: 'localhost',
 		hot: true,
 		inline: true,
