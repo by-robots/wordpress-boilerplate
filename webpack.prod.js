@@ -162,12 +162,12 @@ module.exports = {
 			test: /\.svg$/,
 			use: {
 				loader: 'file-loader',
-				options: { name: 'svg/[name].[hash:5].svg' },
+				options: { name: 'svg/[name].[hash:8].svg' },
 			},
 		}]
 	},
 	output: {
-		filename: 'js/[name].[hash:5].js',
+		filename: 'js/[name].[hash:8].js',
 		path: path.join(__dirname, '/dist'),
 		publicPath: process.env.PUBLIC_PATH,
 	},
@@ -175,7 +175,7 @@ module.exports = {
 		new CleanWebpackPlugin([ 'dist' ], { exclude: [ '.gitkeep' ] }),
 		new HtmlWebpackPlugin(configureHtmlWebpack()),
 		new ManifestPlugin(configureManifest()),
-		new MiniCssExtractPlugin({ filename: 'css/[name].[hash:5].css' }),
+		new MiniCssExtractPlugin({ filename: 'css/[name].[hash:8].css' }),
 		new WebappWebpackPlugin(configureWebApp()),
 	],
 };

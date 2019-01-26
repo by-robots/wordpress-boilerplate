@@ -1,10 +1,18 @@
 'use strict';
 
+/**
+ * External.
+ */
 const webpack = require('webpack');
 const path = require('path');
 
-module.exports = {
-	devServer: {
+/**
+ * Configure Webpack Dev Server.
+ *
+ * @return {Object}
+ */
+const configureDevServer = () => {
+	return {
 		contentBase: path.join(__dirname, 'dist'),
 		disableHostCheck: true,
 		headers: { 'Access-Control-Allow-Origin': '*' },
@@ -13,7 +21,16 @@ module.exports = {
 		inline: true,
 		overlay: true,
 		port: 8080,
-	},
+	};
+};
+
+/**
+ * Export the config.
+ *
+ * @type {Object}
+ */
+module.exports = {
+	devServer: configureDevServer(),
 	devtool: 'source-map',
 	entry: [ './src/js/index.js' ],
 	mode: 'development',
