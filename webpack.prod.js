@@ -91,7 +91,7 @@ const configureBabel = (browserList) => {
 			presets: [[
 				'@babel/preset-env', {
 					modules: false,
-					useBuiltIns: 'entry',
+					useBuiltIns: 'usage',
 					targets: { browsers: browserList },
 				},
 			]],
