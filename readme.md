@@ -1,11 +1,11 @@
 # WordPress Boilerplate Theme
 A boilerplate WordPress theme that uses Webpack to do the heavy lifting.
 
-[By Robots](https://by-robots.com)
+[By Robots](https://by-robots.dev)
 
 ## Introduction
 For an introduction and explanation of this boilerplate please check out the
-related [blog post](https://by-robots.com/2019/01/webpack-and-wordpress).
+related [blog post](https://by-robots.dev/2019/01/webpack-and-wordpress).
 
 ## Usage
 You'll need to do a smidge of configuration first. Copy `.env.sample` to `.env`
